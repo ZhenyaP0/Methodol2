@@ -35,10 +35,29 @@ stages:
   evaluate:
     cmd: python3 evaluate.py
     deps:
+    - path: dtree/predict.txt
+      md5: 70a80b2ea76f8b8bbb30a88b75bc1a7d
+      size: 90
     - path: k-means/predict.txt
       md5: 60646d82d92ebcc99447ccd25ca588ee
       size: 90
     outs:
     - path: metrics.txt
-      md5: 7b43d1e8aba69c5b0970f4eb99a41f55
-      size: 31
+      md5: 59de41aaa9d0ff443abdc7baf51a7386
+      size: 46
+  dtree_train:
+    cmd: python3 dtree/dtree.py
+    deps:
+    - path: data/dataset/iris_test.csv
+      md5: 8629ee4619d119a43a243c6bc7018f3c
+      size: 701
+    - path: data/dataset/iris_train.csv
+      md5: 33be259e8efbe86658f644fd96782007
+      size: 2607
+    - path: dtree/dtree.py
+      md5: d0fc7a49df3f5df606ec157188da6a3d
+      size: 503
+    outs:
+    - path: dtree/predict.txt
+      md5: 70a80b2ea76f8b8bbb30a88b75bc1a7d
+      size: 90
