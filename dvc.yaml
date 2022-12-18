@@ -15,10 +15,19 @@ stages:
     - k-means/k-means.py
     outs:
     - k-means/predict.txt
+  dtree_train:
+    cmd: python3 dtree/dtree.py
+    deps:
+    - data/dataset/iris_test.csv
+    - data/dataset/iris_train.csv
+    - dtree/dtree.py
+    outs:
+    - dtree/predict.txt
   evaluate:
     cmd: python3 evaluate.py
     deps:
     - k-means/predict.txt
+    - dtree/predict.txt
     metrics:
     - metrics.txt
 

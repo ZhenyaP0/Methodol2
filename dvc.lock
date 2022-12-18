@@ -32,3 +32,13 @@ stages:
     - path: k-means/predict.txt
       md5: 60646d82d92ebcc99447ccd25ca588ee
       size: 90
+  evaluate:
+    cmd: python3 evaluate.py
+    deps:
+    - path: k-means/predict.txt
+      md5: 60646d82d92ebcc99447ccd25ca588ee
+      size: 90
+    outs:
+    - path: metrics.txt
+      md5: 7b43d1e8aba69c5b0970f4eb99a41f55
+      size: 31
