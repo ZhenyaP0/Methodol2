@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  data_prepare:
+    cmd: python3 prepare_dataset.py
+    deps:
+    - path: data/iris.csv
+      md5: 57fce90c81521889c736445f058c4838
+      size: 3716
+    - path: prepare_dataset.py
+      md5: c9d460da41bdfb88f5971b72dedba83f
+      size: 400
+    outs:
+    - path: data/dataset/iris_test.csv
+      md5: 8629ee4619d119a43a243c6bc7018f3c
+      size: 701
+    - path: data/dataset/iris_train.csv
+      md5: 33be259e8efbe86658f644fd96782007
+      size: 2607
+  k-means_train:
+    cmd: python3 k-means/k-means.py
+    deps:
+    - path: data/dataset/iris_test.csv
+      md5: 8629ee4619d119a43a243c6bc7018f3c
+      size: 701
+    - path: data/dataset/iris_train.csv
+      md5: 33be259e8efbe86658f644fd96782007
+      size: 2607
+    - path: k-means/k-means.py
+      md5: 9c953788aa2356b3ba82cff5bf66334a
+      size: 525
+    outs:
+    - path: k-means/predict.txt
+      md5: 60646d82d92ebcc99447ccd25ca588ee
+      size: 90
