@@ -1,0 +1,25 @@
+stages:
+  data_prepare:
+    cmd: python3 prepare_dataset.py
+    deps:
+    - data/iris.csv
+    - prepare_dataset.py
+    outs:
+    - data/dataset/iris_test.csv
+    - data/dataset/iris_train.csv
+  k-means_train:
+    cmd: python3 k-means/k-means.py
+    deps:
+    - data/dataset/iris_test.csv
+    - data/dataset/iris_train.csv
+    - k-means/k-means.py
+    outs:
+    - k-means/predict.txt
+  evaluate:
+    cmd: python3 evaluate.py
+    deps:
+    - k-means/predict.txt
+    metrics:
+    - metrics.txt
+
+  
